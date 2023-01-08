@@ -39,8 +39,6 @@ const SearchSongBody = props => {
       if (data.length > 0) {
         //console.log('datanome:' + JSON.stringify(data));
         return (
-
-
           <FlatList
             data={data}
             renderItem={({item}) => (

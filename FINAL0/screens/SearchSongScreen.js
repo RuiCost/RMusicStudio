@@ -5,18 +5,6 @@ import SearchSongHeader from '../components/SearchSongHeader';
 
 const SearchSongScreen = () => {
   const [query, setQuery] = useState(' ');
- /* function submitStuff(input) {
-    song_labels.search = input;
-    return undefined;
-  }
-
-  function requestStuff() {
-    song_labels.count = song_labels.count + 1;
-    return undefined;
-  }
-
-  */
-
   const a = 0;
   console.log(query);
   return (

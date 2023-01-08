@@ -19,6 +19,7 @@ export const FETCH_SONGSLoved_STARTED = 'FETCH_SONGSLoved_STARTED';
 export const FETCH_SONGSLoved_SUCCESS = 'FETCH_SONGSLoved_SUCCESS';
 export const FETCH_SONGSLoved_FAILURE = 'FETCH_SONGSLoved_FAILURE';
 
+export const FETCH_SONGSRemoveLoved_STARTED = 'FETCH_SONGSRemoveLoved_STARTED';
 export function fetchSongs(url, request, dispatch) {
   console.log('First:' + url);
   const success = res => dispatch(fetchSongsSuccess(res));
@@ -50,8 +51,6 @@ export function fetchSongsFailure(message) {
   };
 }
 
-
-
 export function fetchSongsLoved(url, request, dispatch) {
   console.log('First9:' + url);
   const success = res => dispatch(fetchSongsLovedSuccess(res));
@@ -62,18 +61,18 @@ export function fetchSongsLoved(url, request, dispatch) {
 export function fetchDeTestParaPost(url, request, dispatch) {
   console.log('First9:' + url);
   var myHeaders = new Headers();
-  myHeaders.append("accept", "*/*");
-  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append('accept', '*/*');
+  myHeaders.append('Content-Type', 'application/json');
 
   var raw = JSON.stringify({
-    "stock": 12
+    stock: 12,
   });
 
   var requestOptions = {
     method: 'POST',
     headers: myHeaders,
     body: raw,
-    redirect: 'follow'
+    redirect: 'follow',
   };
   const success = res => dispatch(fetchSongsLovedSuccess(res));
   const failure = err => dispatch(fetchSongsLovedFailure(err.message));
@@ -83,6 +82,11 @@ export function fetchDeTestParaPost(url, request, dispatch) {
 export function fetchSongsLovedStarted() {
   return {
     type: FETCH_SONGSLoved_STARTED,
+  };
+}
+export function fetchSongsRemoveLovedStarted() {
+  return {
+    type: FETCH_SONGSRemoveLoved_STARTED,
   };
 }
 
@@ -105,30 +109,6 @@ export function fetchSongsLovedFailure(message) {
     },
   };
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export function fetchStoreCreate(url, request, dispatch) {
   const success = res => dispatch(fetchStoreCreateSuccess(res));
@@ -211,4 +191,22 @@ export function showData(dispatch) {
   const request = {};
   fetchSongsLoved(url, request, dispatch);
   return {type: ADD_LOVED_SONG};
+}
+
+export function removeLovedSong(url, request, dispatch) {
+  //apesar de funcionar o pedido retorna erro
+  const failure = () => dispatch(showData1(dispatch));
+  const success = () => dispatch(showData1(dispatch));
+
+  makeHTTPRequest(url, request, success, failure);
+}
+
+export const REMOVE_LOVED_SONG = 'REMOVE_LOVED_SONG';
+
+export function showData1(dispatch) {
+  dispatch(fetchSongsRemoveLovedStarted());
+  const url = URL_API3;
+  const request = {};
+  fetchSongsLoved(url, request, dispatch);
+  return {type: REMOVE_LOVED_SONG};
 }

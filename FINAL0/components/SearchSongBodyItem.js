@@ -37,7 +37,7 @@ const SearchSongBodyItem = props => {
       },
       {
         text: 'OK',
-        onPress: addLovedSong(url, request, dispatch),
+        onPress: ()=>addLovedSong(url, request, dispatch),
       },
     ]);
 

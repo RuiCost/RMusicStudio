@@ -7,7 +7,9 @@ import {
   FETCH_SONGSLoved_FAILURE,
   FETCH_STORE_CREATE_SUCCESS,
   FETCH_STORE_CREATE_FAILURE,
-    ADD_LOVED_SONG,
+  ADD_LOVED_SONG,
+  REMOVE_LOVED_SONG,
+  FETCH_SONGSRemoveLoved_STARTED,
 } from './Actions';
 
 function reducer(state, action) {
@@ -48,6 +50,15 @@ function reducer(state, action) {
           data: [],
         },
       };
+    case FETCH_SONGSRemoveLoved_STARTED:
+      return {
+        ...state,
+        songloved: {
+          loading: true,
+          error: null,
+          data: [],
+        },
+      };
     case FETCH_SONGSLoved_SUCCESS:
       return {
         ...state,
@@ -80,6 +91,10 @@ function reducer(state, action) {
         },
       };
     case ADD_LOVED_SONG:
+      return {
+        ...state,
+      };
+    case REMOVE_LOVED_SONG:
       return {
         ...state,
       };
